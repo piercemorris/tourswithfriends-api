@@ -20,7 +20,7 @@ router.post("/create", async (req, res, next) => {
         })
         .then(record => {
           console.log("User is", record);
-          return res.status(200).send("Successfully created user");
+          return res.json(record);
         })
         .catch(err => {
           console.log("ERROR:", err);
