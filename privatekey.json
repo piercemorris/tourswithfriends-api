@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "city-tours-with-friends",
+  "private_key_id": "0b6ff94ace682437b12050d0d154d3cadaa10f4b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHaPVwHAqeDXtx\nkpVPZkBhOs7475bjJzek5oKrnxQe44wZhyxXBF3Z9K0U74UP2P17qXUJFj/VgfQV\nD7Yf7wOg0pG8PHZzLB9KZHOkrI/BUL8Aj3d5L+rdkTZ9GSwVyKJ4tbhm1ntMlAKk\nqkPd1LOQ8PfbP739dypDh1+XsMolJ/2UY+YzWaiksISz2LK9Qd/fCUC9r4FPU3TV\nd1AucGESiakUWh3OC/T6G3igk9ES4WAJyacPSnBpL0YiuLWd2I+dVsCshrN5UISh\nSyVS1dNWSD24aGMuN1S+eQPLfM7gUi3w7GJoEvWJ12UHDS8DCs0mHJ0n7D+K9h67\nORghIChrAgMBAAECggEACabG2lpBGU1FwEV7/I/SZeJWyi2ue+gWBWEyyeO1MZmJ\n2mJ0fvGzKS1ygyTkp9O00RtukrYE+OyFR8+u3PTQlCQc8aNriD+GdC9QeZPwkUa7\nN+e5vJ/ZGkhA/uUNATDozDbfafrPlPFE/3tONZpp5oYDORVouK/f18zhj5H69rlW\n2Ll1w9xNbLj5eBye/lm6C2qsfu3L03Phuqv1z8qZVsSqYS8dtUpH67f/DCQZ/y/+\nIMxc7uMX9MaIlDM+Of45o1BgwQMqveqOXavzCf/bVU6dn8avczHNitaN296fDZHr\nVOhDt34mPXGOkaFJr6pG7H5cl5vByucmAE23ZD4jIQKBgQD0K+eaRJl5NTa3dy8o\nJzsH276MODANn/8TWtXOqij264LnrlJUsg06Gql0fxPBAxJcLIeXJgYaewUs1o8E\nCcOJakC0SkEXSFBnPyrtr4Dzt6bxsyC6d7132nJlPeGvg63rZI93VbeBKgXxOOaq\nadJaQfjhU4hPB2u6xI/7RUzODQKBgQDREfGamGPA8llXpB7MhnkXhF0c/MIN5PEt\nnvlGdbf9QAuBVHonqgnuXQfoCLYf8ALiOgfQYBB0SVKqWRcYyFfg81Oz0VR62mDw\nfgZVgODfM/DMT9PT0dCkquDK6Efrscn1KkHAJ9X89kVYbkh4QReichQmho+7CHfq\noCqXDRgqVwKBgGF4zWHmFKYwOgGPUIHk90mxzSVIoNYvkrH1RvjTMLsxVPaLvk4V\nLfaOAiuBNy+LvF6TYCVUhoc3qN83X6wrAaXvhpjyM33J3l749ngf4YhpPfmqmlwV\nxMr9p0EHLPrVxC393M+0pian0etz3ZEV4WUqhOHeaMGzoqvSH/AcwAZZAoGAEAfB\nL6pZk7TBVu/1kJcK99ulTBCxTGFugKH82QMzrU5Y03zHtPzbsBQgBBGO7Vn4zqHG\ncZq8CD6LARa9p5/M5SmjFFmLkbPm1OnE0I+GLncMEo5YXphq2AVmIQi4YwEJzCuG\nSRaE2NWFMaebFOVgy4rVsrKEmMGoeCv5uAVAAhcCgYEAivFi/xyFcHXvwIAaQkLk\n7warfMLRc9AklLONAHxyrpaWj9g2aYSLMIXeH39vLHDib7c692wH1x/JMzlSFlkP\nUgAMlfT/0DOAKdNsukG6z6wUhcSKbzFmLrJT+DyJhbY657/6W2FTLcE8OycUPZmD\n3+AmZpSTvNAmeQRvKj03Bjg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vdb1f@city-tours-with-friends.iam.gserviceaccount.com",
+  "client_id": "107464900779807060389",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vdb1f%40city-tours-with-friends.iam.gserviceaccount.com"
+}
