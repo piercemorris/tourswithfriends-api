@@ -48,24 +48,28 @@ router.post("/giftNotif", async (req, res) => {
   if (senderUid) {
     const sender = Firebase.auth().getUser(senderUid);
 
-    console.log(`users/${receiverUid}`);
     Firebase.database()
       .ref(`users/${receiverUid}`)
       .on("value", async snapshot => {
         const pushToken = snapshot.val().push_token;
-        console.log(snapshot.val());
+
         if (Expo.isExpoPushToken(pushToken)) {
           // add users name instead of generic notif
 
-          const message = {
-            to: pushToken,
-            title: "New gift received!",
-            body: "You have a new gift",
-            sound: "default"
-          };
+          const messages = [
+            {
+              to: pushToken,
+              title: "New gift received!",
+              body: "You have a new gift",
+              sound: "default"
+            }
+          ];
+
+          let chunk = expo.chunkPushNotifications(messages);
 
           try {
-            await expo.sendPushNotificationsAsync(message);
+            const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+            console.log(ticketChunk);
 
             return res.status(200);
           } catch (err) {
