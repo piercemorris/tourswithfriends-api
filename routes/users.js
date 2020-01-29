@@ -65,18 +65,8 @@ router.post("/giftNotif", async (req, res) => {
             }
           ];
 
-          console.log("before chunk");
-          let chunks = await expo.chunkPushNotifications(messages);
-          console.log("after chunk");
-
           try {
-            for (chunk in chunks) {
-              console.log("before send");
-              const ticketChunk = await expo.sendPushNotificationsAsync(
-                messages
-              );
-              console.log("after send");
-            }
+            await expo.sendPushNotificationsAsync(messages);
             return res.status(200);
           } catch (err) {
             console.error(err);
@@ -86,6 +76,9 @@ router.post("/giftNotif", async (req, res) => {
           console.error(
             `Push token ${pushToken} is not a valid Expo push token`
           );
+          return res
+            .status(400)
+            .send(`Push token ${pushToken} is not a valid Expo push token`);
         }
       });
   }
