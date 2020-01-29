@@ -40,58 +40,49 @@ router.post("/create", async (req, res, next) => {
   }
 });
 
+const getSenderName = uid => {
+  return Firebase.database()
+    .ref(`users/${senderUid}`)
+    .once("value");
+};
+
+const getReceiverPushToken = uid => {
+  return Firebase.database()
+    .ref(`users/${uid}`)
+    .once("value");
+};
+
 router.post("/giftNotif", async (req, res) => {
-  // get user sending the gift
   const senderUid = req.body.senderUid;
   const receiverUid = req.body.receiverUid;
 
   if (senderUid) {
-    const sender = Firebase.auth().getUser(senderUid);
+    const senderName = (await getSenderName(senderUid)).val().displayName;
+    const receiverPushToken = (await getReceiverPushToken(receiverUid)).val()
+      .push_token;
 
-    Firebase.database()
-      .ref(`users/${receiverUid}`)
-      .on("value", async snapshot => {
-        const pushToken = snapshot.val().push_token;
+    const messages = [
+      {
+        to: receiverPushToken,
+        title: "New city tour gift received!",
+        body: `You have a new gift from ${senderName}`,
+        sound: "default"
+      }
+    ];
 
-        if (Expo.isExpoPushToken(pushToken)) {
-          // add users name instead of generic notif
-
-          const messages = [
-            {
-              to: pushToken,
-              title: "New gift received!",
-              body: "You have a new gift",
-              sound: "default"
-            }
-          ];
-
-          try {
-            console.log("sent out");
-            await expo.sendPushNotificationsAsync(messages);
-            console.log("sent confirmed");
-            return res.status(200).send("Push notification sent successfully");
-          } catch (err) {
-            console.error(err);
-            return res.status(400).send("Error push token not valid: " + err);
-          }
-        } else {
-          console.error(
-            `Push token ${pushToken} is not a valid Expo push token`
-          );
-          return res
-            .status(400)
-            .send(`Push token ${pushToken} is not a valid Expo push token`);
-        }
+    expo
+      .sendPushNotificationsAsync(messages)
+      .then(() => {
+        return res.status(200).send("Push notification sent successfully");
+      })
+      .catch(err => {
+        return res.status(400).send("Error push token not valid: " + err);
       });
+  } else {
+    return res
+      .status(400)
+      .send(`Push token ${pushToken} is not a valid Expo push token`);
   }
-
-  // get the push token of the user who is receiving the gift
-
-  // check if push token is valid
-
-  // create the appropriate message
-
-  // send push notification
 });
 
 module.exports = router;
