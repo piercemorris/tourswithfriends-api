@@ -42,7 +42,7 @@ router.post("/create", async (req, res, next) => {
 
 const getSenderName = uid => {
   return Firebase.database()
-    .ref(`users/${senderUid}`)
+    .ref(`users/${uid}`)
     .once("value");
 };
 
