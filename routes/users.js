@@ -65,12 +65,13 @@ router.post("/giftNotif", async (req, res) => {
             }
           ];
 
-          let chunk = expo.chunkPushNotifications(messages);
+          let chunks = expo.chunkPushNotifications(messages);
 
           try {
-            const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-            console.log(ticketChunk);
-
+            for (chunk in chunks) {
+              const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+              console.log(ticketChunk);
+            }
             return res.status(200);
           } catch (err) {
             console.error(err);
