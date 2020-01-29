@@ -48,11 +48,12 @@ router.post("/giftNotif", async (req, res) => {
   if (senderUid) {
     const sender = Firebase.auth().getUser(senderUid);
 
+    console.log(`users/${receiverUid}`);
     Firebase.database()
       .ref(`users/${receiverUid}`)
       .on("value", async snapshot => {
         const pushToken = snapshot.val().push_token;
-
+        console.log(snapshot.val());
         if (Expo.isExpoPushToken(pushToken)) {
           // add users name instead of generic notif
 
