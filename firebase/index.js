@@ -3,6 +3,7 @@ const Firebase = require("firebase-admin");
 const key = require("../privatekey.json");
 
 var firebaseConfig = {
+  credential: Firebase.credential.cert(key),
   apiKey: "AIzaSyDUBTicIY6MlpuCptBwr3G15Pfdh1z6PwU",
   authDomain: "city-tours-with-friends.firebaseapp.com",
   databaseURL: "https://city-tours-with-friends.firebaseio.com",
@@ -14,10 +15,7 @@ var firebaseConfig = {
 };
 
 const init = () => {
-  const connection = Firebase.initializeApp({
-    credential: Firebase.credential.cert(key),
-    firebaseConfig
-  });
+  const connection = Firebase.initializeApp(firebaseConfig);
   if (connection) console.log("Firebase connected @" + Date.now());
 };
 
