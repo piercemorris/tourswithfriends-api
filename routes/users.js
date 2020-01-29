@@ -66,8 +66,10 @@ router.post("/giftNotif", async (req, res) => {
           ];
 
           try {
+            console.log("sent out");
             await expo.sendPushNotificationsAsync(messages);
-            return res.status(200);
+            console.log("sent confirmed");
+            return res.status(200).send("Push notification sent successfully");
           } catch (err) {
             console.error(err);
             return res.status(400).send("Error push token not valid: " + err);
