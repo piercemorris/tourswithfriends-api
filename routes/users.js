@@ -1,8 +1,11 @@
+var { Expo } = require("expo-server-sdk");
 var Firebase = require("firebase-admin");
 var express = require("express");
 var router = express.Router();
 
 var errors = require("../errors");
+
+let expo = new Expo();
 
 /* GET users listing. */
 router.get("/", (req, res, next) => {
@@ -35,6 +38,56 @@ router.post("/create", async (req, res, next) => {
   } catch (ex) {
     return res.status(400).send("Error creating user " + ex);
   }
+});
+
+router.post("/giftNotif", async (req, res) => {
+
+  // get user sending the gift
+  const senderUid = req.body.senderUid;
+  const receiverUid = req.body.receiverUid;
+
+  if (senderUid) {
+
+    const sender = Firebase.auth().getUser(senderUid);
+
+    Firebase.database().ref(`users/${receiverUid}`).on('value', snapshot => {
+      const pushToken = snapshot.val().push_token;
+    
+      if (Expo.isExpoPushToken(pushToken)) {
+
+        // add users name instead of generic notif
+
+        const message = {
+          to: pushToken,
+          title: "New gift received!",
+          body: "You have a new gift",
+          sound: 'default'
+        }
+
+        try {
+
+          await expo.sendPushNotificationsAsync(message);
+
+        } catch (err) {
+          console.error(err);
+        }
+
+      } else {
+        console.error(`Push token ${pushToken} is not a valid Expo push token`);
+      }
+    });
+  }
+  
+
+  // get the push token of the user who is receiving the gift
+
+
+  // check if push token is valid
+
+  // create the appropriate message
+
+  // send push notification
+
 });
 
 module.exports = router;
