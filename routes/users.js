@@ -22,7 +22,7 @@ router.post("/create", async (req, res, next) => {
           password: "password"
         })
         .then(record => {
-          return res.json({ user: record.uid });
+          return res.json({ userId: record.uid });
         })
         .catch(async err => {
           if (err.code === errors.emailAlreadyExists) {
