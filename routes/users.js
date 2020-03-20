@@ -40,13 +40,12 @@ router.post("/create", async (req, res, next) => {
             from: "citytourswithfriends@gmail.com",
             to: req.body.email,
             subject: "New account created!",
-            text: `
-              <div>
-                <H2>A friend is trying to send you a personalised city tour gift to you, using this email!</H2>
-                <p>Sign into your account now by downloading the app, using the same email address as this one but use the password ${password ||
-                  ""}!</p>
-              </div>
-            `
+            text: `Hi!
+              
+              A friend is trying to send you a personalised city tour gift to you, using this email!
+                
+              Sign into your account now by downloading the app, using the same email address as this one but use the password - ${password ||
+                ""}`
           };
 
           console.log("before sending mail");
