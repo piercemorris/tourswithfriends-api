@@ -2,6 +2,7 @@ var { Expo } = require("expo-server-sdk");
 var Firebase = require("firebase-admin");
 var express = require("express");
 var randomstring = require("randomstring");
+var nodemailer = require('nodemailer');
 var router = express.Router();
 
 var errors = require("../errors");
