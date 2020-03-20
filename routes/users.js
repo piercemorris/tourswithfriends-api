@@ -25,6 +25,7 @@ router.post("/create", async (req, res, next) => {
           password: password
         })
         .then(record => {
+          console.log("before email");
           var transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -33,6 +34,8 @@ router.post("/create", async (req, res, next) => {
             }
           });
 
+
+          console.log("before mail options");
           var mailOptions = {
             from: "citytourswithfriends@gmail.com",
             to: req.body.email,
@@ -46,6 +49,7 @@ router.post("/create", async (req, res, next) => {
             `
           };
 
+          console.log("before sending mail")l
           transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
               console.log(error);
@@ -54,6 +58,7 @@ router.post("/create", async (req, res, next) => {
             }
           });
 
+          console.log("before returning");
           return res.json({ userId: record.uid });
         })
         .catch(async err => {
