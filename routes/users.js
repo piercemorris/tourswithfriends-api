@@ -1,6 +1,7 @@
 var { Expo } = require("expo-server-sdk");
 var Firebase = require("firebase-admin");
 var express = require("express");
+var randomstring = require("randomstring");
 var router = express.Router();
 
 var errors = require("../errors");
@@ -15,13 +16,44 @@ router.get("/", (req, res, next) => {
 router.post("/create", async (req, res, next) => {
   try {
     if (req.body.email && req.body.name) {
+      const password = randomstring.generate(10);
+
       await Firebase.auth()
         .createUser({
           email: req.body.email,
           displayName: req.body.name,
-          password: "password"
+          password: password
         })
         .then(record => {
+          var transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+              user: "citytourswithfriends@gmail.com",
+              pass: process.env.TRANSPORT_PASS
+            }
+          });
+
+          var mailOptions = {
+            from: "citytourswithfriends@gmail.com",
+            to: req.body.email,
+            subject: "New account created!",
+            text: `
+              <div>
+                <H2>A friend is trying to send you a personalised city tour gift to you, using this email!</H2>
+                <p>Sign into your account now by downloading the app, using the same email address as this one but use the password ${password ||
+                  ""}!</p>
+              </div>
+            `
+          };
+
+          transporter.sendMail(mailOptions, function(error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
+
           return res.json({ userId: record.uid });
         })
         .catch(async err => {
