@@ -2,7 +2,7 @@ var { Expo } = require("expo-server-sdk");
 var Firebase = require("firebase-admin");
 var express = require("express");
 var randomstring = require("randomstring");
-var nodemailer = require('nodemailer');
+var nodemailer = require("nodemailer");
 var router = express.Router();
 
 var errors = require("../errors");
@@ -35,7 +35,6 @@ router.post("/create", async (req, res, next) => {
             }
           });
 
-
           console.log("before mail options");
           var mailOptions = {
             from: "citytourswithfriends@gmail.com",
@@ -50,7 +49,7 @@ router.post("/create", async (req, res, next) => {
             `
           };
 
-          console.log("before sending mail")l
+          console.log("before sending mail");
           transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
               console.log(error);
